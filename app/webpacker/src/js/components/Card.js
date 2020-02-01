@@ -9,6 +9,10 @@ const Card = (props) => {
     props.onDragStart(props.columnIndex, props.id, event.target.clientHeight)
   }
 
+  const openSaleHistory = () => {
+    props.openSaleHistory(props.id);
+  }
+
   return (
     <div
       id={`card-${props.id}`}
@@ -19,7 +23,8 @@ const Card = (props) => {
       draggable="true"
       onDragStart={onDragStart}
       onDragEnd={() => props.onDragEnd(props.columnIndex, props.id)}
-    >
+      onClick={openSaleHistory}
+      >
       <div className="margin-top-sm margin-bottom-sm text-tight">
         {props.title}
       </div>

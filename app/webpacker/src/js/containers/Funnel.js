@@ -3,23 +3,29 @@ import { connect } from "react-redux"
 import AddCardButton from "../components/AddCardButton"
 import Column from "../components/Column"
 import Toast from "../components/Toast"
+import SaleProgressionModal from '../components/SaleProgressionModal';
+
 import {
   showForm, hideForm, updateForm, submitForm,
   dragStart, dragEnd, dragEnter, dragLeave, dropStart, drop,
-  dismissNotification
+  dismissNotification, hideSaleProgression, openSaleHistory,
 } from "../actions"
 
 const Funnel = (props) => (
   <div>
+    {props.openSaleProgression &&
+      <SaleProgressionModal
+        currentProgression={props.currentProgression}
+        hideSaleProgression={props.hideSaleProgression}
+      />
+    }
     {props.notification &&
       <Toast
         text={props.notification}
         onDismiss={props.onDismissNotification}
       />
     }
-
     <AddCardButton onClick={props.onClickAdd} />
-
     <div className="flex margin-top-lg">
       {props.columns.map((column, index) =>
         <Column
@@ -39,13 +45,20 @@ const Funnel = (props) => (
           onDragEnter={props.onDragEnter}
           onDragLeave={props.onDragLeave}
           onDrop={props.onDrop}
+          openSaleHistory={props.openSaleHistory}
         />
       )}
     </div>
   </div>
 )
 
-const mapStateToProps = ({ columns, drag, form, notification }) => (
+const mapStateToProps = ({ 
+  columns,
+  drag,
+  form,
+  notification,
+  saleProgressionModal,
+}) => (
   {
     columns: columns.map((column, index) => {
       if (index == drag.from)
@@ -65,7 +78,9 @@ const mapStateToProps = ({ columns, drag, form, notification }) => (
     }),
     showForm: form.show,
     disableForm: form.waiting,
-    notification: notification
+    notification: notification,
+    currentProgression: saleProgressionModal.currentProgression,
+    openSaleProgression: saleProgressionModal.openSaleProgression,
   }
 )
 
@@ -85,7 +100,9 @@ const mapDispatchToProps = dispatch => (
       dispatch(dropStart(index))
       dispatch(drop())
     },
-    onDismissNotification: () => dispatch(dismissNotification())
+    onDismissNotification: () => dispatch(dismissNotification()),
+    openSaleHistory: (id) => dispatch(openSaleHistory(id)),
+    hideSaleProgression: () => dispatch(hideSaleProgression()),
   }
 )
 

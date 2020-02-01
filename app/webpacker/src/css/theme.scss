@@ -7,12 +7,15 @@
 .bg-darken-15 { background-color: rgba(0, 0, 0, .15); }
 .bg-darken-40 { background-color: rgba(0, 0, 0, .40); }
 
+.bg-header-modal { background-color: #5F82A9; }
+
 .text-white   { color: white; }
 .text-success { color: #66cc34; }
 .text-gray    { color: #777; }
 .text-bold    { font-weight: bold; }
 .text-italic  { font-style: italic; }
 .text-larger  { font-size: 1.2em; }
+.text-xlarge  { font-size: 2.3em; }
 .text-smaller { font-size: .95em; }
 .text-right   { text-align: right; }
 .text-center  { text-align: center; }
@@ -21,10 +24,12 @@
 .break-word { word-wrap: break-word; }
 
 .border-rounded { border-radius: $border-radius; }
+.border-radius-top { border-radius: $border-radius $border-radius 0 0; }
 .border-pill    { border-radius: 9999px; }
 
 .box-shadow       { box-shadow: 0 0 2px rgba(0, 0, 0, 0.15); }
 .box-shadow-inset { box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.15) inset; }
+.box-shadow-modal { box-shadow: 0px 15px 35px 0px rgba(0, 0, 0, .20)}
 
 .opacity-6      { opacity: 0.6; }
 .brightness-50  { filter: brightness(50%) }

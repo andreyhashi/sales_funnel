@@ -11,6 +11,16 @@ class SalesController < ApplicationController
     end
   end
 
+  def show
+    if !Sale.exists?(params[:id])
+      render json: { error: "Not Found"}, status: 404
+    else
+      sale = Sale.find(params[:id])
+      progressions = sale.progressions.order('created_at DESC') 
+      render json: {sale: sale, progressions: progressions}
+    end
+  end
+
   def update
     sale = Sale.find(params[:id])
 

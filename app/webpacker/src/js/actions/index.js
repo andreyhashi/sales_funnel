@@ -1,3 +1,6 @@
+export const SHOW_SALE_HISTORY = 'SHOW_SALE_HISTORY';
+export const HIDE_SALE_HISTORY = 'HIDE_SALE_HISTORY';
+
 export const SHOW_FORM = "SHOW_FORM"
 export const HIDE_FORM = "HIDE_FORM"
 export const UPDATE_FORM = "UPDATE_FORM"
@@ -161,6 +164,28 @@ export const moveRequestError = () => ({ type: MOVE_REQUEST_ERROR })
 // it, so this happens automatically when the animation ends.
 export const dismissNotification = () => ({ type: DISMISS_NOTIFICATION })
 
+export const openSaleHistory = (saleId) => (
+  (dispatch) => {
+    fetch(`/sales/${saleId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Csrf-Token': readCsrfToken()
+      }
+    }).then(
+      response => {
+        if (response.ok){
+          response.json().then(json => {
+            dispatch(setCurrentProgression(json));
+          })
+        }
+      }
+    )
+  }
+);
+
+export const setCurrentProgression = (currentProgression) => ({type: SHOW_SALE_HISTORY, currentProgression })
+export const hideSaleProgression = () => ({type: HIDE_SALE_HISTORY});
 // Required by rails controllers to avoid Cross Site Request Forgery (CSRF)
 const readCsrfToken = () =>
   document.querySelector('meta[name="csrf-token"]').content

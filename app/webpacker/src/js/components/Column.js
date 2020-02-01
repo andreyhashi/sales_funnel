@@ -16,7 +16,7 @@ const Column = (props) => {
     <div
       id={`column-${props.id}`}
       className=
-        "margin-right-sm flex-grow full-height min-width-200 max-width-300"
+      "margin-right-sm flex-grow full-height min-width-200 max-width-300"
       onDragEnter={() => props.onDragEnter(props.index)}
       onDragLeave={() => props.onDragLeave(props.index)}
       onDragOver={event => event.preventDefault()}
@@ -53,6 +53,7 @@ const Column = (props) => {
             dragged={card.dragged}
             onDragStart={props.onDragStart}
             onDragEnd={props.onDragEnd}
+            openSaleHistory={props.openSaleHistory}
           />
         )}
       </div>
