@@ -1,7 +1,7 @@
 import React from "react"
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime';
-import TitleDescription from "./TitleDescription"
+import StageDescription from "./StageDescription"
 import 'dayjs/locale/pt-br';
 dayjs.locale('pt-br');
 dayjs.extend(relativeTime);
@@ -16,7 +16,7 @@ const SaleProgressionList = props => {
       {progressions.map((progression, index) => (
         <li key={index} className="flex space-between">
           <div className="text-left">
-            <span className={`text-larger ${color[progression.stage]}`}><TitleDescription stage={progression.stage} /></span><br/>
+            <span className={`text-larger ${color[progression.stage]}`}><StageDescription stage={progression.stage} /></span><br/>
             <span className="opacity-6">{dayjs(progression.created_at).fromNow()}</span>
           </div>
           <div className="text-right margin-bottom-xl">
