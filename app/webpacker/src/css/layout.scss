@@ -2,6 +2,8 @@
 .space-between  { justify-content: space-between; }
 .flex-grow      { flex: 1; }
 
+.grid {display: grid; }
+
 .inline-block { display: inline-block; }
 .inline-flex { display: inline-flex; }
 
@@ -40,6 +42,7 @@
 .margin-top-md    { margin-top: $margin-md; }
 .margin-right-md  { margin-right: $margin-md; }
 .margin-bottom-md { margin-bottom: $margin-md; }
+.margin-bottom-xl { margin-bottom: $margin-xl; }
 
 .margin-top-lg    { margin-top: $margin-lg; }
 .margin-right-xl  { margin-right: $margin-xl; }
